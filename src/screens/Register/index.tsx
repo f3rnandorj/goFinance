@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useForm, FieldValues } from "react-hook-form";
 
 import { Modal } from "react-native";
 
 import { Button } from "../../components/Form/Button";
 import { CategorySelectButton } from "../../components/Form/CategorySelectButton";
-import { Input } from "../../components/Form/Input";
+import { InputForm } from "../../components/Form/InputForm";
 import { TransactionTypeButton } from "../../components/Form/TransactionTypeButton";
 import { CategorySelect } from "../CategorySelect";
 import {
@@ -26,6 +27,19 @@ export function Register() {
     icon: "list",
   });
 
+  const { control, handleSubmit } = useForm();
+
+  function handleRegister(form: FieldValues) {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+      transactionType,
+      category: category.key,
+    };
+
+    console.log(data);
+  }
+
   function handleTransactionType(type: "up" | "down") {
     setTransactionType(type);
   }
@@ -46,8 +60,8 @@ export function Register() {
 
       <Form>
         <Fields>
-          <Input placeholder="Nome" />
-          <Input placeholder="Preço" />
+          <InputForm name="name" control={control} placeholder="Nome" />
+          <InputForm name="amount" control={control} placeholder="Preço" />
 
           <TransactionsTypes>
             <TransactionTypeButton
@@ -70,7 +84,7 @@ export function Register() {
             onPress={handleOpenSelectCategoryModal}
           />
         </Fields>
-        <Button title="Enviar" />
+        <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
       </Form>
 
       <Modal visible={categoryModalOpen}>
