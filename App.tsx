@@ -12,6 +12,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -50,7 +51,7 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <Routes />
     </ThemeProvider>
   );
 }
