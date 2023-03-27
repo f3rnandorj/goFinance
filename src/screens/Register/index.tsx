@@ -62,7 +62,7 @@ export function Register({ navigation }: ScreenProps) {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
+      type: transactionType,
       category: category.key,
       date: new Date(),
     };
@@ -117,15 +117,15 @@ export function Register({ navigation }: ScreenProps) {
             <TransactionsTypes>
               <TransactionTypeButton
                 type="up"
-                isActive={transactionType === "up"}
+                isActive={transactionType === "positive"}
                 title="Income"
-                onPress={() => setTransactionType("up")}
+                onPress={() => setTransactionType("positive")}
               />
               <TransactionTypeButton
                 type="down"
-                isActive={transactionType === "down"}
+                isActive={transactionType === "negative"}
                 title="Outcome"
-                onPress={() => setTransactionType("down")}
+                onPress={() => setTransactionType("negative")}
               />
             </TransactionsTypes>
 
