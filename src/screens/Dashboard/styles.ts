@@ -92,6 +92,12 @@ export const TransactionsList = styled(FlatList<DataListProps>).attrs({
   },
 })``;
 
+export const LoadContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const LogoutButton = styled(TouchableOpacity)``;
 
 export const SubHeader = styled.View`
