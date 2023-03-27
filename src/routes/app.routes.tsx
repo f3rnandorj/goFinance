@@ -8,6 +8,7 @@ import { Dashboard } from "../screens/Dashboard";
 import { Register } from "../screens/Register";
 import { useTheme } from "styled-components";
 import { ParamListBase } from "@react-navigation/native";
+import { Resume } from "../screens/Resume";
 
 export interface AppTabParamList extends ParamListBase {
   Listagem: undefined;
@@ -57,7 +58,7 @@ export function AppRoutes() {
       />
       <Screen
         name="Resumo"
-        component={Register}
+        component={Resume}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="pie-chart" color={color} size={size} />
