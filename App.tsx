@@ -1,7 +1,5 @@
 import { ThemeProvider } from "styled-components";
 
-import { Register } from "./src/screens/Register";
-
 import theme from "./src/global/styles/theme";
 
 import {

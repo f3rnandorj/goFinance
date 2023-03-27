@@ -15,17 +15,17 @@ export const Container = styled(TouchableOpacity)`
 
 export const Category = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.title};
   font-size: ${RFValue(14)}px;
 `;
 
 export const IconMaterial = styled(MaterialIcons)`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.title};
   font-size: ${RFValue(20)}px;
 `;
 
 export const IconFeather = styled(Feather)`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.title};
   font-size: ${RFValue(18)}px;
   margin-right: 10px;
 `;
