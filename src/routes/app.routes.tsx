@@ -7,8 +7,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dashboard } from "../screens/Dashboard";
 import { Register } from "../screens/Register";
 import { useTheme } from "styled-components";
+import { ParamListBase } from "@react-navigation/native";
 
-const { Navigator, Screen } = createBottomTabNavigator();
+export interface AppTabParamList extends ParamListBase {
+  Listagem: undefined;
+  Cadastrar: undefined;
+  Resumo: undefined;
+}
+
+const { Navigator, Screen } = createBottomTabNavigator<AppTabParamList>();
 
 export function AppRoutes() {
   const theme = useTheme();
