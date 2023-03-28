@@ -35,7 +35,7 @@ export function Register({ navigation }: ScreenProps) {
   const dataKey = "@gofinances:transactions";
 
   const [category, setCategory] = useState({
-    key: "categoy",
+    key: "category",
     name: "Categoria",
     icon: "list",
   });
