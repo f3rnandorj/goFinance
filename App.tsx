@@ -16,6 +16,7 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { Routes } from "./src/routes";
+import { AuthProvider } from "./src/hooks/AuthContext";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -54,12 +55,14 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar
-        barStyle="light-content"
-        translucent
-        backgroundColor="transparent"
-      />
-      <Routes />
+      <AuthProvider>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"
+        />
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
