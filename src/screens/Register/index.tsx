@@ -25,6 +25,7 @@ import {
 } from "./styles";
 
 import { RegisterSchema } from "./schema";
+import { useAuth } from "../../hooks/AuthContext";
 
 type ScreenProps = BottomTabScreenProps<AppTabParamList, "Cadastrar">;
 
@@ -32,7 +33,7 @@ export function Register({ navigation }: ScreenProps) {
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-  const dataKey = "@gofinances:transactions";
+  const { user } = useAuth();
 
   const [category, setCategory] = useState({
     key: "category",
@@ -48,6 +49,8 @@ export function Register({ navigation }: ScreenProps) {
   } = useForm({
     resolver: yupResolver(RegisterSchema),
   });
+
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   async function handleRegister(form: FieldValues) {
     if (!transactionType) {

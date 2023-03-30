@@ -4,12 +4,20 @@ export function getLastTransactionDate(
   collection: DataListProps[],
   type: "positive" | "negative"
 ) {
+  const collectionFiltered = collection.filter(
+    (transaction) => transaction.type === type
+  );
+
+  if (collectionFiltered.length === 0) {
+    return "Não há transações";
+  }
+
   const lastTransaction = new Date(
     Math.max.apply(
       Math,
-      collection
-        .filter((transaction) => transaction.type === type)
-        .map((transaction) => new Date(transaction.date).getTime())
+      collectionFiltered.map((transaction) =>
+        new Date(transaction.date).getTime()
+      )
     )
   );
 

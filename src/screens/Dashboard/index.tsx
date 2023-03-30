@@ -57,7 +57,7 @@ export function Dashboard() {
   const theme = useTheme();
 
   async function loadTransactions() {
-    const dataKey = "@gofinances:transactions";
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
 
@@ -100,11 +100,14 @@ export function Dashboard() {
       transactions,
       "positive"
     );
+    console.log(lastTransactionEntries!!);
     const lastTransactionExpensive = getLastTransactionDate(
       transactions,
       "negative"
     );
-    const totalInterval = `01 a ${lastTransactionEntries}`;
+    const totalInterval = lastTransactionEntries!!
+      ? `01 à ${new Date().getDate()}, ainda não há transações.`
+      : `01 à ${lastTransactionEntries}`;
 
     const total = entriesTotal - expensiveTotal;
 
@@ -114,14 +117,18 @@ export function Dashboard() {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+        lastTransaction: lastTransactionEntries!!
+          ? "Não há transações."
+          : `Última entrada dia ${lastTransactionEntries}`,
       },
       expensive: {
         amount: expensiveTotal.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Última saída dia ${lastTransactionExpensive}`,
+        lastTransaction: lastTransactionExpensive!!
+          ? "Não há transações."
+          : `Última saída dia ${lastTransactionExpensive}`,
       },
       total: {
         amount: total.toLocaleString("pt-BR", {
