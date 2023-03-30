@@ -16,7 +16,7 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { Routes } from "./src/routes";
-import { AuthProvider } from "./src/hooks/AuthContext";
+import { AuthProvider, useAuth } from "./src/hooks/AuthContext";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -25,6 +25,7 @@ export default function App() {
     Poppins_500Medium,
     Poppins_700Bold,
   });
+  const { userStorageIsLoading } = useAuth();
 
   useEffect(() => {
     async function show() {
@@ -50,9 +51,10 @@ export default function App() {
     hide();
   }, [appIsReady]);
 
-  if (!fontsLoaded || !appIsReady) {
+  if (!fontsLoaded || !appIsReady || userStorageIsLoading) {
     return null;
   }
+
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
